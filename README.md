@@ -5,10 +5,11 @@ Our store features a rich and diverse range of apps, including social media, gam
 
 In our store, you can easily find the apps you need through categories, leaderboards and search. We also regularly update the latest apps with professional reviews and introductions so you can better understand the functions and features of each app.
 
-### The web application consists of three tables. These are:
+### The web application consists of four tables. These are:
 1，Software list: all the apps in the shopping site, you can click on the details to enter the details page, you can display the information about the software: price, rating, number of reviews
 2，Shopping cart: displays price, quantity, and delete and checkout
 3，My orders: displays price, quantity
+4，product detail
 
 ### Main features
 1,Show all applications list
