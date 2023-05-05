@@ -23,11 +23,11 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Software List</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Shopping Cart</a>
+           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">Shopping Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+            <a class="nav-link active" aria-current="page" href="/order/myOrder">My order</a>
           </li>
         </ul>
       </div>
@@ -50,7 +50,7 @@
           {% for item in cart_items %}
         <tr>
           <th scope="row">AppId-{{item.id}}</th>
-          <td>{{item.product_id}}</td>
+          <td>AppId-{{item.product_id}}</td>
           {% if item.product_price == '0' %}
           <td style="color:green">free</td>
           {% else %}

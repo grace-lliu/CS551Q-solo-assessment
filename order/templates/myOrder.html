@@ -24,10 +24,10 @@
             <a class="nav-link active" aria-current="page" href="/">Software List</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Shopping Cart</a>
+            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">Shopping Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+            <a class="nav-link active" aria-current="page" href="/order/myOrder">My order</a>
           </li>
         </ul>
       </div>
@@ -49,7 +49,7 @@
           {% for order in orders %}
           <tr>
             <th scope="row">{{ order.id }}</th>
-            <td>{{ order.product_name}}</td>
+            <td>AppId-{{order.product_id}}</td>
             <td>{{ order.product_price }}</td>
             <td>{{ order.product_quantity }}</td>
             <td>{{ order.total_price }}</td>
