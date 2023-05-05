@@ -26,6 +26,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Shopping Cart</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -35,31 +38,38 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">production</th>
-          <th scope="col">size</th>
-          <th scope="col">Check out</th>
-        </tr>
+            <th scope="col">#</th>
+            <th scope="col">production</th>
+            <th scope="col">price</th>
+            <th scope="col">Number</th>
+            <th scope="col">check out</th>
+          </tr>
+
       </thead>
       <tbody>
+          {% for item in cart_items %}
         <tr>
-          <th scope="row">1</th>
-          <td>第五人格</td>
-          <td style="align-items: center;">1034mb</td>
-          <td><a href="" class="btn btn-dark">Check out</a></td>
+          <th scope="row">AppId-{{item.id}}</th>
+          <td>{{item.product_id}}</td>
+          {% if item.product_price == '0' %}
+          <td style="color:green">free</td>
+          {% else %}
+          <td >{{ item.product_price }}</td>
+          {% endif %}
+          <td>{{ item.product_quantity }}</td>
+          <td>
+             <div class="btn-group">
+        <form action="/order/checkout/" method="POST">
+          {% csrf_token %}
+          {% if cart_items %}
+          <button type="submit" class="btn btn-dark">Check out</button>
+          {% endif %}
+        </form>
+        <a href="/order/removeCart/{{item.id}}" class="btn" style="background-color:red; color:white;">delete</a>
+      </div>
+          </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>荒野乱斗</td>
-          <td>1034mb</td>
-          <td><a href="" class="btn btn-dark">Check out</a></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>王者荣耀</td>
-          <td>1034mb</td>
-          <td><a href="" class="btn btn-dark">Check out</a></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 

@@ -51,26 +51,64 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Shopping Cart</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+          </li>
+            {% if request.COOKIES.userid %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link" href="/order"><strong>{{ request.COOKIES.username }}</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/logout">logout</a>
+                    </li>
+          {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/login">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/signup">sign up</a>
+                    </li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
   <div class="detail" style="display: flex;">
     <div class=" left">
-      <img src="https://via.placeholder.com/500x500" style="height: 500px; width: 500px; margin-left: 40px;">
+      <img src="{{ detail.img_url }}" style="height: 500px; width: 500px; margin-left: 40px;">
     </div>
     <div class="right" style="margin-left: 140px;">
-      <ul style="list-style-type: none;">
-        <li style="font-size: 1.25rem;">production Name</li>
-        <li>type:</li>
-        <li>price:</li>
-        <li>Rating:</li>
-        <li>Introduction:</li>
-      </ul>
+        <ul style="list-style-type: none;">
+            <li style="font-size: 1.25rem;">Product Name: {{ detail.id }}</li>
+            <li>Type: {{ detail.prime_genre }}</li>
+            <li>Price: {{ detail.currency }} {{ detail.price }}</li>
+            <li>Rating: {{ detail.user_rating }}</li>
+            <li>Introduction: {{ detail.ver }}</li>
+            <li>Size: {{ detail.size_bytes }}</li>
+            <li>Number of Ratings: {{ detail.rating_count_tot }}</li>
+            <li>Current Version Ratings: {{ detail.rating_count_ver }}</li>
+            <li>Current Version Rating: {{ detail.user_rating_ver }}</li>
+            <li>Content Rating: {{ detail.cont_rating }}</li>
+            <li>Number of Supported Devices: {{ detail.sup_devices_num }}</li>
+            <li>Number of Screenshots Shown for Display: {{ detail.ipadSc_urls_num }}</li>
+            <li>Number of Supported Languages: {{ detail.lang_num }}</li>
+            <li>Is VPP Licensed: {{ detail.vpp_lic }}</li>
+        </ul>
     </div>
+
   </div>
   <div style="margin-top: 40px;text-align: center;">
-    <a href="" class="btn btn-dark">Add to cart</a>
+       <form method="post" action="/order/addToCart/">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ detail.id }}">
+              <input type="hidden" name="product_name" value="{{ detail.name }}">
+              <input type="hidden" name="product_price" value="{{ detail.price }}">
+              <input type="hidden" name="product_quantity" value="1">
+              <button type="submit" class="btn btn-dark">Add to cart</button>
+            </form>
   </div>
 
 </body>

@@ -20,7 +20,7 @@
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      min-height: 100vh;
+      <!-- min-height: 100vh; -->
       margin: 0;
     }
 
@@ -41,116 +41,91 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Software List</a>
+            <a class="nav-link active" aria-current="page" href="/">Software List</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Shopping Cart</a>
+            <a class="nav-link active" aria-current="page" href="/order/shoppingCart">Shopping Cart</a>
           </li>
-
+            {% if request.COOKIES.userid %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/order/shoppingCart">My order</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link" href="/order"><strong>{{ request.COOKIES.username }}</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/logout">logout</a>
+                    </li>
+          {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/login">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/useradmin/signup">sign up</a>
+                    </li>
+          {% endif %}
         </ul>
       </div>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <form class="d-flex align-items-center" method="get" action="/search">
+          <input class="form-control me-6" type="search" name="search_query" placeholder="search" aria-label="search" style="height: 38px; width: 200px;">
+          <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </div>
+      </form>  
     </div>
   </nav>
 
 
   <div class="container my-3" style="display: flex; flex-wrap: wrap; justify-content:space-between">
+    {% for item in products %}
     <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-bottom: 20px;">
+
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Production Name</h5>
-            <p class="card-text">Introduction</p>
-            <p class="card-text">Price: </p>
-            <p class="card-text">Rating: </p>
-            <p class="card-text">Version:</p>
-            <a href="/detail/1" class="btn btn-dark">detail</a>
+            <h5 class="card-title">App Id-{{item.id}}</h5>
+            <p class="card-text">Price: {{item.price}}</p>
+            <p class="card-text">Rating:{{item.user_rating}} </p>
+            <p class="card-text">Number of rating:{{item.rating_count_tot}}</p>
+            <a href="/detail/{{item.id}}" class="btn" style="background-color:#0d6efd;color: #fff;">detail</a>
           </div>
         </div>
       </div>
+    </div>
+    {% endfor %}
 
     </div>
-
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Production Name</h5>
-            <p class="card-text">Introduction</p>
-            <p class="card-text">Price: </p>
-            <p class="card-text">Rating: </p>
-            <p class="card-text">Version:</p>
-            <a href="/detail/1" class="btn btn-dark">detail</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Production Name</h5>
-            <p class="card-text">Introduction</p>
-            <p class="card-text">Price: </p>
-            <p class="card-text">Rating: </p>
-            <p class="card-text">Version:</p>
-            <a href="/detail/1" class="btn btn-dark">detail</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Production Name</h5>
-            <p class="card-text">Introduction</p>
-            <p class="card-text">Price: </p>
-            <p class="card-text">Rating: </p>
-            <p class="card-text">Version:</p>
-            <a href="/detail/1" class="btn btn-dark">detail</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Production Name</h5>
-            <p class="card-text">Introduction</p>
-            <p class="card-text">Price: </p>
-            <p class="card-text">Rating: </p>
-            <p class="card-text">Version:</p>
-            <a href="/detail/1" class="btn btn-dark">detail</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-
   <div class="pagination-container">
-    <nav aria-label="Page navigation example" class="son">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page=1">首页</a>
+            </li>
+            <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                {% if products.has_previous %}
+                    <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page={{ products.previous_page_number }}">上一页</a>
+                {% else %}
+                    <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page=1">上一页</a>
+                {% endif %}
+            </li>
+            {% with num_pages=products.paginator.num_pages current_page=products.number %}
+            {% for i in products.paginator.page_range %}
+                {% if i|add:-2 <= current_page and i|add:2 >= current_page %}
+                    <li class="page-item {% if products.number == i %}active{% endif %}">
+                        <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% endwith %}
+            <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page={{ products.paginator.num_pages }}">下一页</a>
+            </li>
+            <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                <a class="page-link" href="?{% if search_query %}search_query={{ search_query|urlencode }}&{% endif %}{% if category_query %}category={{ category_query|urlencode }}&{% endif %}page={{ products.paginator.num_pages }}">尾页</a>
+            </li>
+        </ul>
+    </nav>    
   </div>
 
 
