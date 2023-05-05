@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t_li5#m9pakdkb0&7z=x9h*u%(y&q#pjt_rjo6)ll35ahs0qfl
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://milanpolo-buffalorapid-8000.codio-box.uk']
+CSRF_TRUSTED_ORIGINS = ['https://milanpolo-buffalorapid-8000.codio-box.uk','https://ali-cs551q-assignment.onrender.com']
 
 # Application definition
 
