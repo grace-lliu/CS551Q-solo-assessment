@@ -33,7 +33,7 @@ In our store, you can easily find the apps you need through categories, leaderbo
 
 #### 4.1.2 Clone the repository or pull the code from Github
 ``` shell
-    # git clone git@github.com:LucasZhengrui/Enterprise_Software_Dev_Note.git
+    git clone git@github.com:grace-lliu/CS551Q-solo-assessment.git
 ```
 Or if you have cloned before
 
@@ -46,7 +46,7 @@ Or if you have cloned before
 For example:
 
 ``` shell
-    ALLOWED_HOSTS = ['127.0.0.1','albumhexagon-canvasgenesis-8000.codio-box.uk','sharonpackage-expandfood-8000.codio-box.uk','disaster-management.onrender.com', 'virgoprinter-iconpupil-8000.codio-box.uk']
+    ALLOWED_HOSTS = ['127.0.0.1','milanpolo-buffalorapid-8000.codio-box.uk/']
 ```
 
 #### 4.1.4 Install Django and Plotly in terminal
