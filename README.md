@@ -120,11 +120,8 @@ As for the Plotly in terminal
     python3 manage.py runserver
 ```
 
-## 5 - Test
 
-Besides the disaster table app, we have done unit testing for other apps. The table app does not need us to test inside the app, but we have their related testing in other apps. 
-
-## 6 - Details of deploying the website application
+## 5 - Details of deploying the website application
 
 The website application has been deployed to Render, here is its URL: https://ali-cs551q-assignment.onrender.com .
 

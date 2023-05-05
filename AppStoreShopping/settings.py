@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'parse_data',
     'product',
     'user_admin',
-    'product_admin'
+    'product_admin',
+    'behave_django',
 
 ]
+TEST_RUNNER = 'behave_django.runner.BehaviorDrivenTestRunner'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
